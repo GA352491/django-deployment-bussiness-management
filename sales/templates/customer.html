@@ -32,7 +32,7 @@
 
 
     <br>
-    <div class="row">
+  <!--  <div class="row">
         <div class="col">
             <div class="card card-body">
                 <form method="get">
@@ -44,13 +44,14 @@
             </div>
         </div>
 
-    </div>
+    </div>-->
     <br>
 
     <div class="row">
         <div class="col-md">
-            <div class="card card-body">
-                <table class="table table-sm table-responsive">
+            <div class="card card-body ">
+                <table class="table  table-bordered table-sm table-responsive example ">
+                <thead>
                     <tr>
                         <th>customer name</th>
                         <th>product name</th>
@@ -60,8 +61,12 @@
                         <th>total</th>
                         <th>date_created</th>
                         <th>status</th>
+                        <th>Update</th>
+                        <th>Delete</th>
 
                     </tr>
+                </thead>
+                <tbody>
                     {% for data in orders1 %}
                         <tr>
                             <td>{{ data.customer_name }}</td>
@@ -77,6 +82,7 @@
                             </td>
                         </tr>
                     {% endfor %}
+                </tbody>
                 </table>
             </div>
         </div>
