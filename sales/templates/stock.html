@@ -83,7 +83,7 @@
     <div class="col-sm-4">
 
         <div class="card card-body" style="width: 20rem">
-            <table class="table table-sm" style="width: 16rem">
+            <table class="table table-sm table-responsive" style="width: 16rem">
 
                 <tr>
                     <th>stock available</th>
@@ -118,7 +118,7 @@
                     <a class="btn btn-sm btn-info" href="{% url 'create_stock' %}">create stock</a>
                 </div>
                 <div class="card card-body" style="width: 50rem">
-                    <table class="table table-sm table-bordered">
+                    <table class="table table-sm table-bordered table-responsive">
                         <thead>
                         <tr>
                             {% for data in a %}
@@ -181,7 +181,7 @@
         </div>
     </div>
     <!--
-    <table class="table table-sm">
+    <table class="table table-sm table-responsive">
         <thead>
         <tr>
             {% for data in a %}
