@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+    <br>
+    <div class="row">
+        <div class="col-md">
+            <div class="card card-body">
+                <h5>Products</h5>
+            </div>
+            <div class="card card-body">
+                <table class="table table-bordered table-sm">
+                    <tr>
+                        <th>name</th>
+                        <th>phone</th>
+                        <th>place</th>
+                        <th>date_created</th>
+                    </tr>
+
+
+                    {% for data in customers %}
+                        <tr>
+                            <td>{{ data.name }}</td>
+                            <td>{{ data.phone }}</td>
+                            <td>{{ data.place }}</td>
+                            <td>{{ data.date_created }}</td>
+                        </tr>
+                    {% endfor %}
+
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
