@@ -41,7 +41,7 @@ def stock(request):
     df1.columns = ['product_name_id', 'product name', 'company name', 'quantity', 'price', 'date created',
                    'stock available']
     # print(df1.keys())
-    df4 = pd.merge(df1, df3, on='product_name_id')
+    df4 = pd.merge(df1, df3, on='product_name_id',how='left')
     # print(df4)
     df4['stock available'] = df4['quantity'] - df4['no_of_products']
     df4.rename(columns={'price_x': 'price'}, inplace=True)
