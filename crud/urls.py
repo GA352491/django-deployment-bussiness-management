@@ -19,7 +19,7 @@ from sales import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/', views.home, name='home'),
+    path('', views.home, name='home'),
     path('stock/', views.stock, name='stock'),
     path('customer/<str:pk>/', views.customer, name='customer'),
     path('order_create', views.create_invoice, name='createinvoice'),
