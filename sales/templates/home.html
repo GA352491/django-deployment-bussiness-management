@@ -10,14 +10,19 @@
                 <hr>
                 <div class="card card-body">
                     <a class="btn btn-primary btn-sm btn-block" href="{% url 'create_cus' %}">create customer </a>
-                    <table class="table table-bordered table-responsive table-sm">
+                    <table class="table table-bordered table-responsive table-sm example">
+                        <thead>
                         <tr>
                             <th>view</th>
                             <th>name</th>
                             <th>phone</th>
                             <th>place</th>
                             <th>date_created</th>
+                            <th>Update</th>
+                            <th>Delete</th>
                         </tr>
+                        </thead>
+                        <tbody>
                         {% for data in customers %}
                             <tr>
                             <td><a class="btbtn btn-sm btn-info" href="{% url 'customer' data.id %}">view</a> </td>
@@ -25,8 +30,13 @@
                                 <td>{{ data.phone }}</td>
                                 <td>{{ data.place }}</td>
                                 <td>{{ data.date_created }}</td>
+                                <td><a class="btn btn-sm btn-info" href="{% url 'updatecustomer' data.id %}">Update</a>
+                                </td>
+                                <td><a class="btn btn-sm btn-danger" href="{% url 'deletecustomer' data.id %}">Delete</a>
+                                </td>
                             </tr>
                         {% endfor %}
+                        </tbody>    
                     </table>
 
                 </div>
