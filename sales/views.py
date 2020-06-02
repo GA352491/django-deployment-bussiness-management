@@ -219,3 +219,29 @@ def logoutUser(request):
     logout(request)
     return redirect('login')
 
+@login_required(login_url='login')
+def delete_customer(request, pk):
+    order = Customer.objects.get(id=pk)
+    if request.method == 'POST':
+        order.delete()
+        return redirect('home')
+
+    context = {'item': order}
+    return render(request, 'delete.html', context)
+
+@login_required(login_url='login')
+def update_customer(request, pk):
+    order = Customer.objects.get(id=pk)
+    form = Form1(instance=order)
+
+    if request.method == 'POST':
+        form = Form1(request.POST, instance=order)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = request.user
+            post.save()
+            return redirect('home')
+    context = {'form': form}
+    return render(request, 'create_customer.html', context)
+
+
