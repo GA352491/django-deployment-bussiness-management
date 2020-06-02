@@ -227,7 +227,7 @@ def delete_customer(request, pk):
         return redirect('home')
 
     context = {'item': order}
-    return render(request, 'delete.html', context)
+    return render(request, 'deletecustomer.html', context)
 
 @login_required(login_url='login')
 def update_customer(request, pk):
