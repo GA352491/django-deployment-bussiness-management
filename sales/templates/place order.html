@@ -1,13 +1,22 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <div class="container">
-        <div class="row row-cols-2">
-            <div class="col-md-5">
-                <h5>Invoice:</h5>
-                <hr>
-                <div class="card card-body">
-                    <form method="post" style="width: 50%" action="">
+          <div class="container h-100">
+        <div class="row ">
+            <div class="col">
+                <br>
+                <br>
+
+                <div class="d-flex justify-content-center h-100">
+                    <div class="card user-card">
+                        <div class="d-flex justify-content-center">
+
+                            <h3 id="form-title">place order</h3>
+
+                        </div>
+                        <div class="d-flex justify-content-center form_container ">
+
+                            <form method="post" action="">
                         {% csrf_token %}
                         {% for form in form %}
                         {{ form |crispy }}
@@ -15,13 +24,16 @@
                         {% endfor %}
                         <input type="submit" value="Submit">
                     </form>
+                        </div>
 
+                    </div>
                 </div>
-
             </div>
 
-
         </div>
+
+
     </div>
+
 
 {% endblock %}

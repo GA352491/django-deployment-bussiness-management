@@ -10,7 +10,7 @@ class Customer(models.Model):
     name = models.CharField(max_length=100, null=True)
     phone = models.CharField(max_length=100, null=True)
     place = models.CharField(max_length=100, null=True)
-    date_created = models.DateTimeField(auto_now_add=False, null=True)
+    date_created = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
         return self.name
@@ -28,9 +28,9 @@ class Stock(models.Model):
     company_name = models.CharField(max_length=100, null=True)
     quantity = models.FloatField(null=True)
     price = models.FloatField(null=True)
-    date_created = models.DateTimeField(auto_now_add=False, null=True)
+    date_created = models.DateTimeField(auto_now_add=True, null=True)
     tags = models.ManyToManyField(Tag)
-    stock_available = models.FloatField(null=True,blank=True)
+    stock_available = models.FloatField(null=True, blank=True)
 
     def __str__(self):
         return self.product_name

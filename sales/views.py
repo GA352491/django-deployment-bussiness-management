@@ -7,11 +7,12 @@ from .filters import InvoiceFilter
 from django.db.models import Value, FloatField
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 
 # Create your views here.
-
+@login_required(login_url='login')
 def home(request):
     orders = Invoice.objects.all()
     customers = Customer.objects.all()
@@ -25,7 +26,7 @@ def home(request):
 
     return render(request, 'home.html', context)
 
-
+@login_required(login_url='login')
 def stock(request):
     products = Stock.objects.all()
     df = pd.DataFrame(list(Invoice.objects.all()))
@@ -41,7 +42,7 @@ def stock(request):
     df1.columns = ['product_name_id', 'product name', 'company name', 'quantity', 'price', 'date created',
                    'stock available']
     # print(df1.keys())
-    df4 = pd.merge(df1, df3, on='product_name_id')
+    df4 = pd.merge(df1, df3, on='product_name_id',how='left')
     # print(df4)
     df4['stock available'] = df4['quantity'] - df4['no_of_products']
     df4.rename(columns={'price_x': 'price'}, inplace=True)
@@ -50,14 +51,14 @@ def stock(request):
 
     # s = Stock.objects.update_or_create(stock_available=num, defaults={})
 
-    print(df4.keys())
+    #print(df4)
     con = [products, a]
     com_count = df4['company name'].nunique()
     context = {'products': products, 'a': a, 'df4': df4, 'con': con, 'com_count': com_count}
 
     return render(request, 'stock.html', context)
 
-
+@login_required(login_url='login')
 def customer(request, pk):
     customer = Customer.objects.get(id=pk)
     ord = Invoice.objects.filter(customer_name_id=pk).count()
@@ -69,7 +70,7 @@ def customer(request, pk):
     context = {'customer': customer, 'ord': ord, 'orders1': orders1, 'myFilter': myFilter}
     return render(request, 'customer.html', context)
 
-
+@login_required(login_url='login')
 def create_invoice(request):
     a = Invoice.objects.all()
     form = Form3()
@@ -82,7 +83,7 @@ def create_invoice(request):
     context = {'form': form, 'a': a}
     return render(request, 'order.html', context)
 
-
+@login_required(login_url='login')
 def update_invoice(request, pk):
     order = Invoice.objects.get(id=pk)
     form = Form3(instance=order)
@@ -97,7 +98,7 @@ def update_invoice(request, pk):
     context = {'form': form}
     return render(request, 'order.html', context)
 
-
+@login_required(login_url='login')
 def delete_invoice(request, pk):
     order = Invoice.objects.get(id=pk)
     if request.method == 'POST':
@@ -107,14 +108,14 @@ def delete_invoice(request, pk):
     context = {'item': order}
     return render(request, 'delete.html', context)
 
-
+@login_required(login_url='login')
 def customer_list(request):
     customers = Customer.objects.all()
     context = {'customers': customers}
 
     return render(request, 'customer list.html', context)
 
-
+@login_required(login_url='login')
 def dataset(request):
     df = pd.DataFrame(list(Invoice.objects.all().values()))
     df1 = pd.DataFrame(list(Stock.objects.all().values()))
@@ -135,7 +136,7 @@ def dataset(request):
 
     return render(request, 'customer list.html', context)
 
-
+@login_required(login_url='login')
 def place_order(request, pk):
     Form4Set = inlineformset_factory(Customer, Invoice, fields=('product_name', 'no_of_products', 'price', 'status'),
                                      extra=2)
@@ -150,7 +151,7 @@ def place_order(request, pk):
     context = {'form': form}
     return render(request, 'place order.html', context)
 
-
+@login_required(login_url='login')
 def create_cust(request):
     form = Form1()
     if request.method == 'POST':
@@ -162,7 +163,7 @@ def create_cust(request):
     context = {'form': form}
     return render(request, 'create_customer.html', context)
 
-
+@login_required(login_url='login')
 def stock_create(request):
     form = Form2()
     if request.method == 'POST':
@@ -218,3 +219,27 @@ def logoutUser(request):
     logout(request)
     return redirect('login')
 
+@login_required(login_url='login')
+def delete_customer(request, pk):
+    order = Customer.objects.get(id=pk)
+    if request.method == 'POST':
+        order.delete()
+        return redirect('home')
+
+    context = {'item': order}
+    return render(request, 'deletecustomer.html', context)
+
+@login_required(login_url='login')
+def update_customer(request, pk):
+    order = Customer.objects.get(id=pk)
+    form = Form1(instance=order)
+
+    if request.method == 'POST':
+        form = Form1(request.POST, instance=order)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = request.user
+            post.save()
+            return redirect('home')
+    context = {'form': form}
+    return render(request, 'create_customer.html', context)

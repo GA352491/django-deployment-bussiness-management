@@ -7,13 +7,16 @@
                 <h5>Products</h5>
             </div>
             <div class="card card-body">
-                <table class="table table-bordered table-sm">
+                <table class="table table-bordered table-sm example">
+                    <thead>
                     <tr>
                         <th>name</th>
                         <th>phone</th>
                         <th>place</th>
                         <th>date_created</th>
                     </tr>
+                    </thead>
+                    <tbody>
 
 
                     {% for data in customers %}
@@ -24,6 +27,7 @@
                             <td>{{ data.date_created }}</td>
                         </tr>
                     {% endfor %}
+                    </tbody>
 
                 </table>
             </div>
