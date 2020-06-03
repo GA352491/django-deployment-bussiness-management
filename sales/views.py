@@ -243,3 +243,8 @@ def update_customer(request, pk):
             return redirect('home')
     context = {'form': form}
     return render(request, 'create_customer.html', context)
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 771f7d651398072160180f1811e854b41eb81963
