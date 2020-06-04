@@ -85,10 +85,10 @@ DATABASES = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'crud_db',
+        'NAME': 'crud_db2',
         'USER': 'postgres',
-        'PASSWORD': '',
-        'HOST': 'localhost',
+        'PASSWORD': 'Anish360',
+        'HOST': 'database-2.cr42ayfczwoo.us-east-2.rds.amazonaws.com',
         'PORT': '5432',
     }
 }
