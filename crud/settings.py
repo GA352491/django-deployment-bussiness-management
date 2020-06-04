@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'ur-geq15)()#o_&@^d3(&r86g=#_@lrj@uvz@)utnbd91l&p)3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 # 'anish360.herokuapp.com', '127.0.0.1'
 ALLOWED_HOSTS = ['anish360.herokuapp.com', '127.0.0.1']
 
