@@ -48,7 +48,7 @@ class Invoice(models.Model):
     no_of_products = models.FloatField(null=True)
     price = models.FloatField(null=True)
     total = models.FloatField(null=True)
-    date_created = models.DateTimeField(auto_now_add=False, null=True)
+    date_created = models.DateTimeField(auto_now_add=True, null=True)
     status = models.CharField(max_length=100, null=True, choices=STATUS)
 
     def __str__(self):
