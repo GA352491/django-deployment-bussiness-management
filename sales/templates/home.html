@@ -32,7 +32,8 @@
                                 <td>{{ data.date_created }}</td>
                                 <td><a class="btn btn-sm btn-info" href="{% url 'updatecustomer' data.id %}">Update</a>
                                 </td>
-                                <td><a class="btn btn-sm btn-danger" href="{% url 'deletecustomer' data.id %}">Delete</a>
+                                <td><a class="btn btn-sm btn-danger"
+                                       href="{% url 'deletecustomer' data.id %}">Delete</a>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -60,6 +61,7 @@
                             <th>status</th>
                             <th>Update</th>
                             <th>Delete</th>
+                            <th>whatsapp</th>
 
                         </tr>
                         </thead>
@@ -79,6 +81,8 @@
                                 <td><a class="btn btn-sm btn-info" href="{% url 'updateinvoice' data.id %}">Update</a>
                                 </td>
                                 <td><a class="btn btn-sm btn-danger" href="{% url 'deleteinvoice' data.id %}">Delete</a>
+                                </td>
+                                <td><a class="btn btn-sm btn-success" href="{% url 'whatsapp' data.id %}">whatsapp</a>
                                 </td>
 
                             </tr>

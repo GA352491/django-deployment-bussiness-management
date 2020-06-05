@@ -9,6 +9,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from twilio.rest import Client
 
 
 # Create your views here.
@@ -26,6 +27,7 @@ def home(request):
 
     return render(request, 'home.html', context)
 
+
 @login_required(login_url='login')
 def stock(request):
     products = Stock.objects.all()
@@ -42,7 +44,7 @@ def stock(request):
     df1.columns = ['product_name_id', 'product name', 'company name', 'quantity', 'price', 'date created',
                    'stock available']
     # print(df1.keys())
-    df4 = pd.merge(df1, df3, on='product_name_id',how='left')
+    df4 = pd.merge(df1, df3, on='product_name_id', how='left')
     # print(df4)
     df4['stock available'] = df4['quantity'] - df4['no_of_products']
     df4.rename(columns={'price_x': 'price'}, inplace=True)
@@ -51,12 +53,13 @@ def stock(request):
 
     # s = Stock.objects.update_or_create(stock_available=num, defaults={})
 
-    #print(df4)
+    # print(df4)
     con = [products, a]
     com_count = df4['company name'].nunique()
     context = {'products': products, 'a': a, 'df4': df4, 'con': con, 'com_count': com_count}
 
     return render(request, 'stock.html', context)
+
 
 @login_required(login_url='login')
 def customer(request, pk):
@@ -70,6 +73,7 @@ def customer(request, pk):
     context = {'customer': customer, 'ord': ord, 'orders1': orders1, 'myFilter': myFilter}
     return render(request, 'customer.html', context)
 
+
 @login_required(login_url='login')
 def create_invoice(request):
     a = Invoice.objects.all()
@@ -82,6 +86,7 @@ def create_invoice(request):
 
     context = {'form': form, 'a': a}
     return render(request, 'order.html', context)
+
 
 @login_required(login_url='login')
 def update_invoice(request, pk):
@@ -98,6 +103,7 @@ def update_invoice(request, pk):
     context = {'form': form}
     return render(request, 'order.html', context)
 
+
 @login_required(login_url='login')
 def delete_invoice(request, pk):
     order = Invoice.objects.get(id=pk)
@@ -108,12 +114,14 @@ def delete_invoice(request, pk):
     context = {'item': order}
     return render(request, 'delete.html', context)
 
+
 @login_required(login_url='login')
 def customer_list(request):
     customers = Customer.objects.all()
     context = {'customers': customers}
 
     return render(request, 'customer list.html', context)
+
 
 @login_required(login_url='login')
 def dataset(request):
@@ -136,6 +144,7 @@ def dataset(request):
 
     return render(request, 'customer list.html', context)
 
+
 @login_required(login_url='login')
 def place_order(request, pk):
     Form4Set = inlineformset_factory(Customer, Invoice, fields=('product_name', 'no_of_products', 'price', 'status'),
@@ -151,6 +160,7 @@ def place_order(request, pk):
     context = {'form': form}
     return render(request, 'place order.html', context)
 
+
 @login_required(login_url='login')
 def create_cust(request):
     form = Form1()
@@ -162,6 +172,7 @@ def create_cust(request):
 
     context = {'form': form}
     return render(request, 'create_customer.html', context)
+
 
 @login_required(login_url='login')
 def stock_create(request):
@@ -179,7 +190,6 @@ def registerpage(request):
     if request.user.is_authenticated:
         return redirect('home')
     else:
-
 
         form = CreateUserform()
 
@@ -219,6 +229,7 @@ def logoutUser(request):
     logout(request)
     return redirect('login')
 
+
 @login_required(login_url='login')
 def delete_customer(request, pk):
     order = Customer.objects.get(id=pk)
@@ -228,6 +239,7 @@ def delete_customer(request, pk):
 
     context = {'item': order}
     return render(request, 'deletecustomer.html', context)
+
 
 @login_required(login_url='login')
 def update_customer(request, pk):
@@ -244,3 +256,29 @@ def update_customer(request, pk):
     context = {'form': form}
     return render(request, 'create_customer.html', context)
 
+
+def whatsapp(request, pk):
+    bill = Invoice.objects.get(id=pk)
+    ph = bill.customer_name
+    a = Customer.objects.get(name=ph)
+    # print(a.phone)
+    # print(ph)
+    c = ("product name:" + str(bill.product_name),
+         "qty:" + str(bill.no_of_products),
+         "price:" + str(bill.price))
+
+    # Your Account Sid and Auth Token from twilio.com/console
+    # DANGER! This is insecure. See http://twil.io/secure
+    account_sid = 'AC98c6cf680524372ca568431635d90b01'
+    auth_token = '3f054d145dc91450ce061b973d2c9dba'
+    client = Client(account_sid, auth_token)
+
+    message = client.messages.create(
+        from_='whatsapp:+14155238886',
+        body=str(c),
+        to='whatsapp:+91' + str(a.phone)
+    )
+    print(message.sid)
+
+    context = {'bill': bill}
+    return render(request, 'whatsapp.html', context)
