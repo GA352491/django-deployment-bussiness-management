@@ -30,6 +30,7 @@
                                 <td>{{ data.phone }}</td>
                                 <td>{{ data.place }}</td>
                                 <td>{{ data.date_created }}</td>
+
                                 <td><a class="btn btn-sm btn-info" href="{% url 'updatecustomer' data.id %}">Update</a>
                                 </td>
                                 <td><a class="btn btn-sm btn-danger"
@@ -51,6 +52,7 @@
                     <table class="table  table-bordered table-sm table-responsive example ">
                         <thead>
                         <tr>
+                            <th>Invoice no</th>
                             <th>customer name</th>
                             <th>product name</th>
                             <th>place</th>
@@ -62,7 +64,7 @@
                             <th>Update</th>
                             <th>Delete</th>
                             <th>whatsapp</th>
-                            <th>Invoice no</th>
+
 
                         </tr>
                         </thead>
@@ -71,6 +73,7 @@
 
                         {% for data in orders %}
                             <tr>
+                                <td>{{ data.increment_number }}</td>
                                 <td>{{ data.customer_name }}</td>
                                 <td>{{ data.product_name }}</td>
                                 <td>{{ data.place }}</td>
@@ -85,7 +88,7 @@
                                 </td>
                                 <td><a class="btn btn-sm btn-success" href="{% url 'whatsapp' data.id %}">whatsapp</a>
                                 </td>
-                                <td>{{ data.increment_number }}</td>
+
 
                             </tr>
                         {% endfor %}
