@@ -32,14 +32,14 @@ class Form3(forms.ModelForm):
     class Meta:
         model = Invoice
         fields = '__all__'
-        exclude = ['total','date_created']
+        exclude = ['total', 'date_created', 'invoice_no']
 
 
 class Form4(forms.ModelForm):
     class Meta:
         model = Invoice
         fields = '__all__'
-        exclude = ['place', 'date_created', 'total']
+        exclude = ['place', 'date_created', 'total', 'invoice_no']
 
 
 class CreateUserform(UserCreationForm):
