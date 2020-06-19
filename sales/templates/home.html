@@ -62,6 +62,7 @@
                             <th>Update</th>
                             <th>Delete</th>
                             <th>whatsapp</th>
+                            <th>Invoice no</th>
 
                         </tr>
                         </thead>
@@ -84,6 +85,7 @@
                                 </td>
                                 <td><a class="btn btn-sm btn-success" href="{% url 'whatsapp' data.id %}">whatsapp</a>
                                 </td>
+                                <td>{{ data.increment_number }}</td>
 
                             </tr>
                         {% endfor %}
