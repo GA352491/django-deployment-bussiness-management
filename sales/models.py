@@ -3,6 +3,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.forms import ModelForm
 from datetime import datetime, date
+import pandas as pd
 
 
 # Create your models here.
@@ -50,6 +51,7 @@ class Invoice(models.Model):
     total = models.FloatField(null=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     status = models.CharField(max_length=100, null=True, choices=STATUS)
+    invoice_no = models.CharField(null=True, max_length=100)
 
     def __str__(self):
         return self.status
@@ -58,3 +60,10 @@ class Invoice(models.Model):
     def get_total(self):
         total = self.price * self.no_of_products
         return total
+
+    @property
+    def increment_number(self):
+        df = pd.DataFrame(list(Invoice.objects.all().values()))
+        last_invoice = df['invoice_no'].iloc[-1]
+        invoice_no = str('SRI00') + str(self.id)
+        return invoice_no
