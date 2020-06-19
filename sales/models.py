@@ -59,11 +59,17 @@ class Invoice(models.Model):
     @property
     def get_total(self):
         total = self.price * self.no_of_products
+        a = Invoice.objects.get(id=self.id)
+        a.total = total
+        a.save()
         return total
 
     @property
     def increment_number(self):
         df = pd.DataFrame(list(Invoice.objects.all().values()))
         last_invoice = df['invoice_no'].iloc[-1]
-        invoice_no = str('SRI00') + str(self.id)
-        return invoice_no
+        num = str('SRI00') + str(self.id)
+        a = Invoice.objects.get(id=self.id)
+        a.invoice_no = num
+        a.save()
+        return num
