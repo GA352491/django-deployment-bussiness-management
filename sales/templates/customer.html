@@ -8,7 +8,8 @@
                 <h5>Customer: {{ customer.name }}</h5>
                 <hr>
                 <a class="btn btn-outline-info  btn-sm btn-block" href="">Update Customer</a>
-                <a class="btn btn-outline-info  btn-sm btn-block" href="{% url 'placeorder' customer.id %}">place new order</a>
+                <a class="btn btn-outline-info  btn-sm btn-block" href="{% url 'placeorder' customer.id %}">place new
+                    order</a>
 
             </div>
         </div>
@@ -33,7 +34,7 @@
 
 
     <br>
-  <!--  <div class="row">
+    <!--  <div class="row">
         <div class="col">
             <div class="card card-body">
                 <form method="get">
@@ -52,13 +53,15 @@
         <div class="col-md">
             <div class="card card-body ">
                 <table class="table  table-bordered table-sm table-responsive example ">
-                <thead>
+                    <thead>
                     <tr>
+                        <th>Invoice no</th>
                         <th>customer name</th>
                         <th>product name</th>
                         <th>place</th>
                         <th>no_of_products</th>
                         <th>price</th>
+                        <th>GST</th>
                         <th>total</th>
                         <th>date_created</th>
                         <th>status</th>
@@ -66,15 +69,17 @@
                         <th>Delete</th>
 
                     </tr>
-                </thead>
-                <tbody>
+                    </thead>
+                    <tbody>
                     {% for data in orders1 %}
                         <tr>
+                            <td>{{ data.increment_number }}</td>
                             <td>{{ data.customer_name }}</td>
                             <td>{{ data.product_name }}</td>
                             <td>{{ data.place }}</td>
                             <td>{{ data.no_of_products }}</td>
                             <td>{{ data.price }}</td>
+                            <td>{{ data.tax }}</td>
                             <td>{{ data.get_total }}</td>
                             <td>{{ data.date_created }}</td>
                             <td>{{ data.status }}</td>
@@ -83,7 +88,7 @@
                             </td>
                         </tr>
                     {% endfor %}
-                </tbody>
+                    </tbody>
                 </table>
             </div>
         </div>
