@@ -43,11 +43,18 @@ class Invoice(models.Model):
         ('Out of delivery', 'Out of delivery'),
         ('Delivered', 'Delivered'),
     )
+    GST = (
+        (0, 'NIL'),
+        (12, 12),
+        (16, 16),
+    )
+
     customer_name = models.ForeignKey(Customer, null=True, on_delete=models.SET_NULL)
     product_name = models.ForeignKey(Stock, null=True, on_delete=models.SET_NULL)
     place = models.CharField(max_length=100, null=True)
     no_of_products = models.FloatField(null=True)
     price = models.FloatField(null=True)
+    tax = models.FloatField(null=True, choices=GST)
     total = models.FloatField(null=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     status = models.CharField(max_length=100, null=True, choices=STATUS)
@@ -58,8 +65,9 @@ class Invoice(models.Model):
 
     @property
     def get_total(self):
-        total = self.price * self.no_of_products
         a = Invoice.objects.get(id=self.id)
+        b = self.price * ((self.tax) / 100)
+        total = (self.price * self.no_of_products) + b
         a.total = total
         a.save()
         return total
