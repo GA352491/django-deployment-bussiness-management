@@ -10,6 +10,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from twilio.rest import Client
+from django.db.models import Sum
 
 
 # Create your views here.
@@ -256,7 +257,7 @@ def update_customer(request, pk):
     context = {'form': form}
     return render(request, 'create_customer.html', context)
 
-
+@login_required(login_url='login')
 def whatsapp(request, pk):
     bill = Invoice.objects.get(id=pk)
     ph = bill.customer_name
@@ -282,3 +283,19 @@ def whatsapp(request, pk):
 
     context = {'bill': bill}
     return render(request, 'whatsapp.html', context)
+
+@login_required(login_url='login')
+def pro_list(request, pk):
+    product = Stock.objects.get(id=pk)
+    pro = Invoice.objects.filter(product_name_id=pk).count()
+    pro1 = Invoice.objects.filter(product_name_id=pk)
+    a = Invoice.objects.filter(product_name_id=pk).aggregate(Sum('no_of_products'))
+    b = product.quantity
+    d = dict(a)
+    e = d.get('no_of_products__sum')
+    c = b - e
+    context = {'product': product, 'pro': pro, 'pro1': pro1, 'c': c}
+    return render(request, 'pro_list.html', context)
+
+
+
