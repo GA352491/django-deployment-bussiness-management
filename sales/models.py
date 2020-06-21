@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.forms import ModelForm
 from datetime import datetime, date
 import pandas as pd
+from django.db.models import Sum
 
 
 # Create your models here.
@@ -35,6 +36,21 @@ class Stock(models.Model):
 
     def __str__(self):
         return self.product_name
+
+
+    @property
+    def stock_rem(self):
+
+        product = Stock.objects.get(id=self.id)
+        a = Invoice.objects.filter(product_name_id=self.id).aggregate(Sum('no_of_products'))
+        b = self.quantity
+        d = dict(a)
+        e = d.get('no_of_products__sum')
+        c = b - e
+        product.stock_available = c
+        product.save()
+        return c
+
 
 
 class Invoice(models.Model):
