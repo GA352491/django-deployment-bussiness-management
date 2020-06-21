@@ -36,5 +36,6 @@ urlpatterns = [
     path('updatecustomer/<str:pk>', views.update_customer, name='updatecustomer'),
     path('deleteecustomer/<str:pk>', views.delete_customer, name='deletecustomer'),
     path('whatsapp/<str:pk>', views.whatsapp, name='whatsapp'),
+    path('product/<str:pk>', views.pro_list, name='product'),
 
 ]
