@@ -111,14 +111,52 @@
         <!--<a class="btn btn-sm btn-info"  href="{% url 'create_stock' %}">create stock</a>-->
 
         <div class="row">
-        <div class="col-md">
-            <div class="card card-body card-responsive ">
+            <div class="col-md">
+                <div class="card card-body card-responsive ">
 
 
                     <a class="btn btn-sm btn-info" href="{% url 'create_stock' %}">create stock</a>
 
+        <table class="table  table-bordered table-sm table-responsive example ">
+            <thead>
+            <tr>
+                <th>View</th>
+                <th>product name</th>
+                <th>company name</th>
+                <th>Quantity</th>
+                <th>entry date</th>
+                <th>price</th>
+                <th>stock available</th>
+                <th>Update</th>
+                <th>delete</th>
 
-                    <table class="table  table-bordered table-sm table-responsive example " >
+            </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for data in products %}
+                <tr>
+                    <td><a class="btbtn btn-sm btn-info" href="{% url 'product' data.id %}">view</a></td>
+                    <td>{{ data.product_name }}</td>
+                    <td>{{ data.company_name }}</td>
+                    <td>{{ data.quantity }}</td>
+                    <td>{{ data.date_created }}</td>
+                    <td>{{ data.price }}</td>
+                    <td>{{ data.stock_rem }}</td>
+                <td><a class="btn btn-sm btn-info" href="">Update</a>
+                                </td>
+                                <td><a class="btn btn-sm btn-danger" href="">Delete</a>
+                                </td>
+                </tr>
+            {% endfor %}
+
+
+            </tbody>
+        </table>
+
+              <!--      <table class="table  table-bordered table-sm table-responsive example ">
                         <thead>
                         <tr>
                             {% for data in a %}
@@ -130,8 +168,11 @@
                         </thead>
                         <tbody>
 
+
                         {% for data in a.values %}
                             <tr>
+
+
                                 {% for value in data %}
                                     <td>{{ value }}</td>
                                 {% endfor %}
@@ -141,17 +182,59 @@
                                 <td><a class="btn btn-sm btn-danger" href="">Delete</a>
                                 </td>
 
-
-
                             </tr>
                         {% endfor %}
 
+
                         </tbody>
-                    </table>
+                    </table>-->
+
+
+                </div>
             </div>
         </div>
-            </div>
-            <!--
+
+       <!-- <table class="table  table-bordered table-sm table-responsive example ">
+            <thead>
+            <tr>
+                <th>View</th>
+                <th>product name</th>
+                <th>company name</th>
+                <th>Quantity</th>
+                <th>entry date</th>
+                <th>price</th>
+                <th>stock available</th>
+                <th>Update</th>
+                <th>delete</th>
+
+            </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for data in products %}
+                <tr>
+                    <td><a class="btbtn btn-sm btn-info" href="{% url 'product' data.id %}">view</a></td>
+                    <td>{{ data.product_name }}</td>
+                    <td>{{ data.company_name }}</td>
+                    <td>{{ data.quantity }}</td>
+                    <td>{{ data.date_created }}</td>
+                    <td>{{ data.price }}</td>
+                    <td>{{ data.stock_rem }}</td>
+                <td><a class="btn btn-sm btn-info" href="">Update</a>
+                                </td>
+                                <td><a class="btn btn-sm btn-danger" href="">Delete</a>
+                                </td>
+                </tr>
+            {% endfor %}
+
+
+            </tbody>
+        </table>-->
+
+
+        <!--
             <div class="col-sm-4">
 
                 <div class="card card-body bg-info" style="width: 20rem " >
@@ -177,7 +260,7 @@
                 </div>
             </div>
         -->
-        </div>
+    </div>
     </div>
     <!--
     <table class="table table-sm">
