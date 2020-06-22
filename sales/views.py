@@ -68,10 +68,14 @@ def customer(request, pk):
     ord = Invoice.objects.filter(customer_name_id=pk).count()
     # orders = Customer.objects.filter(id=pk)
     orders1 = Invoice.objects.filter(customer_name_id=pk)
+    f = Invoice.objects.filter(customer_name_id=pk).filter(bill_type='Credit').aggregate(Sum('total'))
+    a = dict(f)
+    e = a.get('total__sum')
+
     myFilter = InvoiceFilter(request.GET, queryset=orders1)
     orders1 = myFilter.qs
 
-    context = {'customer': customer, 'ord': ord, 'orders1': orders1, 'myFilter': myFilter}
+    context = {'customer': customer, 'ord': ord, 'orders1': orders1, 'myFilter': myFilter, 'e': e}
     return render(request, 'customer.html', context)
 
 
@@ -257,6 +261,7 @@ def update_customer(request, pk):
     context = {'form': form}
     return render(request, 'create_customer.html', context)
 
+
 @login_required(login_url='login')
 def whatsapp(request, pk):
     bill = Invoice.objects.get(id=pk)
@@ -284,18 +289,18 @@ def whatsapp(request, pk):
     context = {'bill': bill}
     return render(request, 'whatsapp.html', context)
 
+
 @login_required(login_url='login')
 def pro_list(request, pk):
     product = Stock.objects.get(id=pk)
     pro = Invoice.objects.filter(product_name_id=pk).count()
     pro1 = Invoice.objects.filter(product_name_id=pk)
     a = Invoice.objects.filter(product_name_id=pk).aggregate(Sum('no_of_products'))
+    f = Invoice.objects.filter(product_name_id=pk).filter(bill_type='Credit').aggregate(Sum('total'))
     b = product.quantity
     d = dict(a)
     e = d.get('no_of_products__sum')
     c = b - e
+    print(f)
     context = {'product': product, 'pro': pro, 'pro1': pro1, 'c': c}
     return render(request, 'pro_list.html', context)
-
-
-
