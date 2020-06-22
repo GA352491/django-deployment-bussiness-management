@@ -63,6 +63,10 @@ class Invoice(models.Model):
         (12, 12),
         (16, 16),
     )
+    types = (
+        ('Credit', 'Credit'),
+        ('Paid', 'Paid'),
+    )
 
     customer_name = models.ForeignKey(Customer, null=True, on_delete=models.SET_NULL)
     product_name = models.ForeignKey(Stock, null=True, on_delete=models.SET_NULL)
@@ -72,6 +76,7 @@ class Invoice(models.Model):
     tax = models.FloatField(null=True, choices=GST)
     total = models.FloatField(null=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
+    bill_type = models.CharField(null=True, max_length=100, choices=types)
     status = models.CharField(max_length=100, null=True, choices=STATUS)
     invoice_no = models.CharField(null=True, max_length=100)
 
