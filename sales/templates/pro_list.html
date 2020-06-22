@@ -64,6 +64,7 @@
                         <th>price</th>
                         <th>GST</th>
                         <th>total</th>
+                        <th>type</th>
                         <th>date_created</th>
                         <th>status</th>
                         <th>Update</th>
@@ -83,6 +84,7 @@
                             <td>{{ data.price }}</td>
                             <td>{{ data.tax }}</td>
                             <td>{{ data.get_total }}</td>
+                            <td>{{ data.bill_type }}</td>
                             <td>{{ data.date_created }}</td>
                             <td>{{ data.status }}</td>
                             <td><a class="btn btn-sm btn-info" href="{% url 'updateinvoice' data.id %}">Update</a>
