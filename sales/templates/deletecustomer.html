@@ -1,13 +1,35 @@
 {% extends 'base.html' %}
 {% block content %}
 
-    <p>Are you sure want to delete "{{ item }}"?</p>
+    <div class="container h-100">
+        <div class="row ">
+            <div class="col">
+                <br>
+                <br>
 
-    <form method="POST" action="{% url 'deletecustomer' item.id %}">
-    {% csrf_token %}
+                <div class="d-flex justify-content-center h-100">
+                    <div class="card user-card">
+                        <p>Are you sure want to delete "{{ item }}"?</p>
 
-    <a href="{% url 'home' %}">cancel</a>
-    <input type="submit" name="confirm">
+                        <form method="POST" action="{% url 'deletecustomer' item.id %}">
+                            {% csrf_token %}
 
-    </form>
+                            <br>
+                            <br>
+
+                            <a href="{% url 'home' %}" class="button btn " style="float: left;background: #AD5A66;color: black">cancel</a>
+                            <input type="submit" value="Submit" class="button btn"
+                                   style="background: #9fa8a3;color: black!important;float: right">
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
 {% endblock %}

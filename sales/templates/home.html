@@ -2,7 +2,178 @@
 {% block content %}
     {% include 'status.html' %}
 
+    <br>
 
+<div class="container-fluid">
+    <div class="row ">
+        <div class="col-sm-6">
+            <div class="card ">
+                <div>
+                    <div class="card-header border-0" style="float: left;text-align: left">
+                        <h3 class="mb-0">Customer</h3>
+                    </div>
+                    <div style="float: right">
+                        <a class="btn btn-primary btn-circle btn-circle-sm m-1 " href="{% url 'create_cus' %}"
+                           style="float: right;background-color: #222234!important;">
+                            <i class="fas fa-plus"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-sm table example">
+                        <thead>
+                        <tr>
+                            <!-- <th>view</th>-->
+                            <th>name</th>
+                            <th>phone</th>
+                            <th>place</th>
+                            <th>date_created</th>
+                            <th>Links</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for data in customers %}
+                            <tr>
+                                <!--<td><a class="btbtn btn-sm btn-info" href="{% url 'customer' data.id %}">view</a></td>-->
+                                <td>{{ data.name }}</td>
+                                <td>{{ data.phone }}</td>
+                                <td>{{ data.place }}</td>
+                                <td>{{ data.date_created }}</td>
+                                <td class="text-right">
+                                    <div class="dropdown">
+                                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
+                                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                            <a class="dropdown-item "
+                                               href="{% url 'customer' data.id %}">View</a>
+                                            <a class="dropdown-item "
+                                               href="{% url 'updatecustomer' data.id %}">Update</a>
+                                            <a class="dropdown-item "
+                                               href="{% url 'deletecustomer' data.id %}">Delete</a>
+
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <!--
+                                <td><a class="btn btn-sm btn-info" href="{% url 'updatecustomer' data.id %}">Update</a>
+                                </td>
+                                <td><a class="btn btn-sm btn-danger"
+                                       href="{% url 'deletecustomer' data.id %}">Delete</a>
+                                </td>-->
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="card">
+                <div>
+                    <div class="card-header border-0" style="float: left;text-align: left">
+                        <h3 class="mb-0">Invoice</h3>
+                    </div>
+
+
+                    <div style="float: right">
+                        <a class="btn btn-primary btn-circle btn-circle-sm m-1 " href="{% url 'createinvoice' %}"
+                           style="float: right;background-color: #222234!important;">
+                            <i class="fas fa-plus"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="table-responsive">
+
+                    <table class="table  table-bordered table-sm table-responsive example ">
+                        <thead>
+                        <tr>
+                            <th>Invoice no</th>
+                            <th>customer name</th>
+                            <th>product name</th>
+                            <th>place</th>
+                            <th>no_of_products</th>
+                            <th>price</th>
+                            <th>GST</th>
+                            <th>total</th>
+                            <th>type</th>
+                            <th>date_created</th>
+                            <th>status</th>
+                            <th>links</th>
+                            <!--
+                            <th>Delete</th>
+                            <th>whatsapp</th>-->
+
+
+                        </tr>
+                        </thead>
+
+                        <tbody>
+
+                        {% for data in orders %}
+                            <tr>
+                                <td>{{ data.increment_number }}</td>
+                                <td>{{ data.customer_name }}</td>
+                                <td>{{ data.product_name }}</td>
+                                <td>{{ data.place }}</td>
+                                <td>{{ data.no_of_products }}</td>
+                                <td>{{ data.price }}</td>
+                                <td>{{ data.tax }}</td>
+                                <td> {{ data.get_total }} </td>
+                                <td>{{ data.bill_type }}</td>
+                                <td>{{ data.date_created }}</td>
+
+                                <td>{{ data.status }}</td>
+
+                                <td class="text-right">
+                                    <div class="dropdown">
+                                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
+                                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                            <a class="dropdown-item "
+                                               href="{% url 'updateinvoice' data.id %}">Update</a>
+                                            <a class="dropdown-item "
+                                               href="{% url 'deleteinvoice' data.id %}">Delete</a>
+                                            <a class="dropdown-item " href="{% url 'whatsapp' data.id %}">whatsapp</a>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <!--
+                                <td><a class="btn btn-sm btn-info" href="{% url 'updateinvoice' data.id %}">Update</a>
+                                </td>
+                                <td><a class="btn btn-sm btn-danger" href="{% url 'deleteinvoice' data.id %}">Delete</a>
+                                </td>
+                                <td><a class="btn btn-sm btn-success" href="{% url 'whatsapp' data.id %}">whatsapp</a>
+                                </td>-->
+
+
+                            </tr>
+                        {% endfor %}
+
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<!--
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-5">
@@ -108,5 +279,5 @@
 
         </div>
     </div>
-
+-->
 {% endblock %}

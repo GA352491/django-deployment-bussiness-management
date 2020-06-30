@@ -1,4 +1,76 @@
 <br>
+<br>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card card-1">
+                <div>
+                    <div style="float: left;text-align: left">
+                        <h2 style="color: black!important;">{{total_orders}} </h2>
+                        <span style="color: black!important;">Total orders</span>
+                    </div>
+                    <div style="float: right">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cart-plus" fill="currentColor"
+                             xmlns="http://www.w3.org/2000/svg" style="float: right">
+                            <path fill-rule="evenodd"
+                                  d="M8.5 5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 .5-.5z"/>
+                            <path fill-rule="evenodd"
+                                  d="M8 7.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0v-2z"/>
+                            <path fill-rule="evenodd"
+                                  d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card card-2">
+                <div>
+                    <div style="float: left;text-align: left">
+                        <h2 style="color: black!important;">{{delivered}}</h2>
+
+                        <span style="color: black!important;"> Orders Delivered  </span></div>
+                    <div style="float: right">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-clipboard-data"
+                             fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="float: right">
+                            <path fill-rule="evenodd"
+                                  d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                            <path fill-rule="evenodd"
+                                  d="M9.5 1h-3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+                            <path d="M4 11a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1zm6-4a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7zM7 9a1 1 0 0 1 2 0v3a1 1 0 1 1-2 0V9z"/>
+                        </svg>
+                        <!--  <i class="fas fa-clipboard-check"></i>-->
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card card-3">
+                <div>
+                    <div style="float: left;text-align: left">
+                        <h2 style="color: black!important;">{{pending}} </h2>
+                        <span style="color: black!important;">Orders Pending</span>
+                    </div>
+                    <div style="float: right">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-basket2" fill="currentColor"
+                             xmlns="http://www.w3.org/2000/svg" style="float: right">
+                            <path fill-rule="evenodd"
+                                  d="M1.111 7.186A.5.5 0 0 1 1.5 7h13a.5.5 0 0 1 .489.605l-1.5 7A.5.5 0 0 1 13 15H3a.5.5 0 0 1-.489-.395l-1.5-7a.5.5 0 0 1 .1-.42zM2.118 8l1.286 6h9.192l1.286-6H2.118z"/>
+                            <path fill-rule="evenodd"
+                                  d="M11.314 1.036a.5.5 0 0 1 .65.278l2 5a.5.5 0 1 1-.928.372l-2-5a.5.5 0 0 1 .278-.65zm-6.628 0a.5.5 0 0 0-.65.278l-2 5a.5.5 0 1 0 .928.372l2-5a.5.5 0 0 0-.278-.65z"/>
+                            <path d="M4 10a1 1 0 0 1 2 0v2a1 1 0 1 1-2 0v-2zm3 0a1 1 0 0 1 2 0v2a1 1 0 1 1-2 0v-2zm3 0a1 1 0 0 1 2 0v2a1 1 0 1 1-2 0v-2zM0 6.5A.5.5 0 0 1 .5 6h15a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-1z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--
 
 <div class="row">
 	<div class="col">
@@ -40,3 +112,5 @@
 		</div>
 	</div>
 </div>
+
+-->

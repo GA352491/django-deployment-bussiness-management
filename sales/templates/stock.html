@@ -1,162 +1,150 @@
 {% extends 'base.html' %}
 {% block content %}
-
     <br>
-    <div class="row">
-        <div class="col">
-            <div class="col-md">
-                <div class="card text-center text-white  mb-3" id="total-orders">
-                    <div class="card-header">
-                        <h5 class="card-title">Total products</h5>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">{{ products.count }}</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="col-md">
-                <div class="card text-center text-white  mb-3" id="orders-delivered">
-                    <div class="card-header">
-                        <h5 class="card-title">total companies</h5>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">{{ com_count }}</h3>
+    <br>
+    <div class="container-md">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card card-1">
+                    <div>
+                        <div style="float: left;text-align: left">
+                            <h2 style="color: black!important;">{{ products.count }} </h2>
+                            <span style="color: black!important;">Total Products</span>
+                        </div>
+                        <div style="float: right">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-collection"
+                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="float: right">
+                                <path fill-rule="evenodd"
+                                      d="M14.5 13.5h-13A.5.5 0 0 1 1 13V6a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5zm-13 1A1.5 1.5 0 0 1 0 13V6a1.5 1.5 0 0 1 1.5-1.5h13A1.5 1.5 0 0 1 16 6v7a1.5 1.5 0 0 1-1.5 1.5h-13zM2 3a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 0-1h-11A.5.5 0 0 0 2 3zm2-2a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7A.5.5 0 0 0 4 1z"/>
+                            </svg>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+            <div class="col-md-4">
+                <div class="card card-2">
+                    <div>
+                        <div style="float: left;text-align: left">
+                            <h2 style="color: black!important;">{{ com_count }}</h2>
 
-        <div class="col">
-            <div class="col-md">
-                <div class="card text-center text-white  mb-3" id="orders-pending">
-                    <div class="card-header">
-                        <h5 class="card-title">Orders Pending</h5>
+                            <span style="color: black!important;"> Total Companies  </span></div>
+                        <div style="float: right">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-building" fill="currentColor"
+                                 xmlns="http://www.w3.org/2000/svg" style="float: right">
+                                <path fill-rule="evenodd"
+                                      d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694L1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z"/>
+                                <path d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z"/>
+                            </svg>
+                            <!--  <i class="fas fa-clipboard-check"></i>-->
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <h3 class="card-title">{{ pending }}</h3>
+
+
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-3">
+                    <div>
+                        <div style="float: left;text-align: left">
+                            <h2 style="color: black!important;">220 </h2>
+                            <span style="color: black!important;">Orders Pending</span>
+                        </div>
+                        <div style="float: right">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-basket2" fill="currentColor"
+                                 xmlns="http://www.w3.org/2000/svg" style="float: right">
+                                <path fill-rule="evenodd"
+                                      d="M1.111 7.186A.5.5 0 0 1 1.5 7h13a.5.5 0 0 1 .489.605l-1.5 7A.5.5 0 0 1 13 15H3a.5.5 0 0 1-.489-.395l-1.5-7a.5.5 0 0 1 .1-.42zM2.118 8l1.286 6h9.192l1.286-6H2.118z"/>
+                                <path fill-rule="evenodd"
+                                      d="M11.314 1.036a.5.5 0 0 1 .65.278l2 5a.5.5 0 1 1-.928.372l-2-5a.5.5 0 0 1 .278-.65zm-6.628 0a.5.5 0 0 0-.65.278l-2 5a.5.5 0 1 0 .928.372l2-5a.5.5 0 0 0-.278-.65z"/>
+                                <path d="M4 10a1 1 0 0 1 2 0v2a1 1 0 1 1-2 0v-2zm3 0a1 1 0 0 1 2 0v2a1 1 0 1 1-2 0v-2zm3 0a1 1 0 0 1 2 0v2a1 1 0 1 1-2 0v-2zM0 6.5A.5.5 0 0 1 .5 6h15a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-1z"/>
+                            </svg>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-
-    <!--   <div class="row">
-        <div class="col-sm-8">
-            <div class="card card-body"style="width: 50rem">
-                <h5>Products</h5>
-            </div>
-            <div class="card card-body" style="width: 50rem">
-                <table class="table table-sm " >
-                    <thead>
-                    <tr>
-                        <th>product name</th>
-                        <th>company name</th>
-                        <th>quantity</th>
-                        <th>price</th>
-                        <th>date</th>
-
-                    </tr>
-                    </thead>
-                    <tbody>
-
-
-                    {% for data in products %}
-                        <tr>
-
-                        <td>{{ data.product_name }}</td>
-                        <td>{{ data.company_name }}</td>
-                        <td>{{ data.quantity }}</td>
-                        <td>{{ data.price }}</td>
-                        <td>{{ data.date_created }}</td>
-                        <td>{{ data.r_total }}</td>
-                    {% endfor %}
-
-                    </tr>
-                </table>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4">
-
-        <div class="card card-body" style="width: 20rem">
-            <table class="table table-sm" style="width: 16rem">
-
-                <tr>
-                    <th>stock available</th>
-                </tr>
-
-                <tbody>
-                {% for data in a %}
-                    <tr>
-                        <td>{{ data }}</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-
-
-            </table>
-        </div>
-    </div>
-
-    -->
-
     <br>
     <br>
-    <div class="container">
-
-        <!--<a class="btn btn-sm btn-info"  href="{% url 'create_stock' %}">create stock</a>-->
-
+    <div class="container-md">
         <div class="row">
             <div class="col-md">
                 <div class="card card-body card-responsive ">
+                    <div>
+                        <div class="card-header border-0" style="float: left;text-align: left">
+                            <h3 class="mb-0">Products</h3>
+                        </div>
+                        <div style="float: right">
+                            <a class="btn btn-primary btn-circle btn-circle-sm m-1 " href="{% url 'create_stock' %}"
+                               style="float: right;background-color: #222234!important;">
+                                <i class="fas fa-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- <a class="btn btn-sm btn-info" href="{% url 'create_stock' %}">create stock</a>-->
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-sm example ">
+                            <thead>
+                            <tr>
+                                <!--  <th>View</th>-->
+                                <th>product name</th>
+                                <th>company name</th>
+                                <th>Quantity</th>
+                                <th>entry date</th>
+                                <th>price</th>
+                                <th>stock available</th>
+                                <th>Links</th>
+
+                            </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                            {% for data in products %}
+                                <tr>
+                                    <!--  <td><a class="btbtn btn-sm btn-info" href="{% url 'product' data.id %}">view</a></td>-->
+                                    <td>{{ data.product_name }}</td>
+                                    <td>{{ data.company_name }}</td>
+                                    <td>{{ data.quantity }}</td>
+                                    <td>{{ data.date_created }}</td>
+                                    <td>{{ data.price }}</td>
+                                    <td>{{ data.stock_rem }}</td>
+                                    <td class="text-right">
+                                        <div class="dropdown">
+                                            <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
+                                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                <a class="dropdown-item "
+                                                   href="{% url 'product' data.id %}">View</a>
+                                                <a class="dropdown-item "
+                                                   href="">Update</a>
+                                                <a class="dropdown-item "
+                                                   href="">Delete</a>
+
+                                            </div>
+                                        </div>
+                                    </td>
 
 
-                    <a class="btn btn-sm btn-info" href="{% url 'create_stock' %}">create stock</a>
-
-        <table class="table  table-bordered table-sm table-responsive example ">
-            <thead>
-            <tr>
-                <th>View</th>
-                <th>product name</th>
-                <th>company name</th>
-                <th>Quantity</th>
-                <th>entry date</th>
-                <th>price</th>
-                <th>stock available</th>
-                <th>Update</th>
-                <th>delete</th>
-
-            </tr>
-
-            </thead>
-
-            <tbody>
-
-            {% for data in products %}
-                <tr>
-                    <td><a class="btbtn btn-sm btn-info" href="{% url 'product' data.id %}">view</a></td>
-                    <td>{{ data.product_name }}</td>
-                    <td>{{ data.company_name }}</td>
-                    <td>{{ data.quantity }}</td>
-                    <td>{{ data.date_created }}</td>
-                    <td>{{ data.price }}</td>
-                    <td>{{ data.stock_rem }}</td>
-                <td><a class="btn btn-sm btn-info" href="">Update</a>
-                                </td>
-                                <td><a class="btn btn-sm btn-danger" href="">Delete</a>
-                                </td>
-                </tr>
-            {% endfor %}
+                                    <!--
+                                    <td><a class="btn btn-sm btn-info" href="">Update</a>
+                                    </td>
+                                    <td><a class="btn btn-sm btn-danger" href="">Delete</a>
+                                    </td>
+                                    -->
+                                </tr>
+                            {% endfor %}
 
 
-            </tbody>
-        </table>
+                            </tbody>
+                        </table>
 
-              <!--      <table class="table  table-bordered table-sm table-responsive example ">
+                        <!--      <table class="table  table-bordered table-sm table-responsive example ">
                         <thead>
                         <tr>
                             {% for data in a %}
@@ -189,107 +177,10 @@
                         </tbody>
                     </table>-->
 
-
+                    </div>
                 </div>
             </div>
         </div>
-
-       <!-- <table class="table  table-bordered table-sm table-responsive example ">
-            <thead>
-            <tr>
-                <th>View</th>
-                <th>product name</th>
-                <th>company name</th>
-                <th>Quantity</th>
-                <th>entry date</th>
-                <th>price</th>
-                <th>stock available</th>
-                <th>Update</th>
-                <th>delete</th>
-
-            </tr>
-
-            </thead>
-
-            <tbody>
-
-            {% for data in products %}
-                <tr>
-                    <td><a class="btbtn btn-sm btn-info" href="{% url 'product' data.id %}">view</a></td>
-                    <td>{{ data.product_name }}</td>
-                    <td>{{ data.company_name }}</td>
-                    <td>{{ data.quantity }}</td>
-                    <td>{{ data.date_created }}</td>
-                    <td>{{ data.price }}</td>
-                    <td>{{ data.stock_rem }}</td>
-                <td><a class="btn btn-sm btn-info" href="">Update</a>
-                                </td>
-                                <td><a class="btn btn-sm btn-danger" href="">Delete</a>
-                                </td>
-                </tr>
-            {% endfor %}
-
-
-            </tbody>
-        </table>-->
-
-
-        <!--
-            <div class="col-sm-4">
-
-                <div class="card card-body bg-info" style="width: 20rem " >
-                    <h5>stock</h5>
-                </div>
-                <div class="card card-body " style="width: 20rem">
-                    <table class="table table-sm table-bordered" style="width: 16rem">
-
-                        <tr>
-                            <th>stock available</th>
-                        </tr>
-
-                        <tbody>
-                        {% for data in a %}
-                            <tr>
-                                <td>{{ data }}</td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-
-
-                    </table>
-                </div>
-            </div>
-        -->
     </div>
-    </div>
-    <!--
-    <table class="table table-sm">
-        <thead>
-        <tr>
-            {% for data in a %}
-                <th>{{ data }}</th>
 
-
-            {% endfor %}
-            <th>update</th>
-            <th>delete</th>
-        </tr>
-        </thead>
-        <tbody>
-
-        {% for data in a.values %}
-            <tr>
-                {% for value in data %}
-                    <td>{{ value }}</td>
-                {% endfor %}
-                <td><a class="btn btn-sm btn-info" href="">Update</a></td>
-                <td><a class="btn btn-sm btn-danger" href="">Delete</a></td>
-
-
-            </tr>
-        {% endfor %}
-
-        </tbody>
-    </table>
--->
 {% endblock %}
