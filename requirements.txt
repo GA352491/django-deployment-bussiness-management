@@ -10,7 +10,7 @@ django-select2==7.4.2
 gunicorn==20.0.4
 idna==2.10
 numpy==1.19.0
-pandas==1.0.3
+pandas==1.0.5
 psycopg2-binary==2.8.5
 PyJWT==1.7.1
 python-dateutil==2.8.1
