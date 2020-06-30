@@ -8,19 +8,18 @@
                 <div class="card card-1">
                     <div>
                         <div style="float: left;text-align: left">
-                            <h2 style="color: black!important;">{{ customer.name }} </h2>
-
+                            <span style="color: black!important;"><b>{{ customer.name }}</b> </span><br>
                             <span style="color: black!important;">
                                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-telephone-fill"
                                      fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd"
                                           d="M2.267.98a1.636 1.636 0 0 1 2.448.152l1.681 2.162c.309.396.418.913.296 1.4l-.513 2.053a.636.636 0 0 0 .167.604L8.65 9.654a.636.636 0 0 0 .604.167l2.052-.513a1.636 1.636 0 0 1 1.401.296l2.162 1.681c.777.604.849 1.753.153 2.448l-.97.97c-.693.693-1.73.998-2.697.658a17.47 17.47 0 0 1-6.571-4.144A17.47 17.47 0 0 1 .639 4.646c-.34-.967-.035-2.004.658-2.698l.97-.969z"/>
                                 </svg>
-                                {{ customer.phone }} </span>
-
-
+                                {{ customer.phone }}
+                            </span>
+                            <br>
                             <span style="color: black!important;"><i
-                                    class="fas fa-map-marker-alt"></i>  {{ customer.place }} </span>
+                                    class="fas fa-map-marker-alt"></i> {{ customer.place }} </span>
 
                             <!--
                             <a class="btn btn-outline-info  btn-sm btn-block" href="">Update Customer</a>
@@ -94,8 +93,7 @@
                             <th>type</th>
                             <th>date_created</th>
                             <th>status</th>
-                            <th>Update</th>
-                            <th>Delete</th>
+                            <th>Links</th>
 
                         </tr>
                         </thead>
@@ -113,10 +111,23 @@
                                 <td>{{ data.bill_type }}</td>
                                 <td>{{ data.date_created }}</td>
                                 <td>{{ data.status }}</td>
-                                <td><a class="btn btn-sm btn-info" href="{% url 'updateinvoice' data.id %}">Update</a>
+                                <td class="text-right">
+                                    <div class="dropdown">
+                                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
+                                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+
+                                            <a class="dropdown-item "
+                                               href="{% url 'updateinvoice' data.id %}">Update</a>
+                                            <a class="dropdown-item "
+                                               href="{% url 'deleteinvoice' data.id %}">Delete</a>
+
+                                        </div>
+                                    </div>
                                 </td>
-                                <td><a class="btn btn-sm btn-danger" href="{% url 'deleteinvoice' data.id %}">Cancel</a>
-                                </td>
+
                             </tr>
                         {% endfor %}
                         </tbody>
