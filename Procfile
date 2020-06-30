@@ -1,2 +1,2 @@
-web: gunicorn crud.wsgi --preload 
+web: gunicorn crud.wsgi
 
