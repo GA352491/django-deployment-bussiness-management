@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 from sales import views
 
 urlpatterns = [
@@ -37,5 +37,6 @@ urlpatterns = [
     path('deleteecustomer/<str:pk>', views.delete_customer, name='deletecustomer'),
     path('whatsapp/<str:pk>', views.whatsapp, name='whatsapp'),
     path('product/<str:pk>', views.pro_list, name='product'),
+    path('accounts/', include('allauth.urls'), name='button'),
 
 ]
