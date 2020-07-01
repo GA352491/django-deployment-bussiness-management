@@ -1,3 +1,5 @@
+{% load socialaccount %}
+{% providers_media_js %}
 {% load static %}
 <!DOCTYPE html>
 <html>
@@ -115,7 +117,7 @@
                     </div>
 
                     <div class="d-flex justify-content-center mt-3 login_container">
-                        <input class="button btn login_btn" type="submit" value="Login" style="background-color:#9fa8a3!important; ">
+                        <input class="button btn login_btn" type="submit" value="Login" style="background-color:#264580!important; ">
                     </div>
                 </form>
 
@@ -125,8 +127,14 @@
             {% endfor %}
             <div class="mt-4">
                 <div class="d-flex justify-content-center links">
-                    <span>Don't have an account? <a href="{% url 'register' %}" class="ml-2">Sign Up</a></span>
+                    <span>Don't have an account? <a href="{% url 'register' %}" class="ml-2" style="color:#2E4672!important;">Sign Up</a></span>
                 </div>
+                <br>
+                <hr>
+
+                <a href="{% provider_login_url "google" %}" class="icon" role="button"aria-pressed="true">
+                    <img src="https://img.icons8.com/color/48/000000/google-logo.png"/>
+                </a>
 
             </div>
         </div>
