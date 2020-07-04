@@ -22,9 +22,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'ur-geq15)()#o_&@^d3(&r86g=#_@lrj@uvz@)utnbd91l&p)3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 # 'anish360.herokuapp.com', '127.0.0.1'
-ALLOWED_HOSTS = ['anish360.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = ['anish360.herokuapp.com', '127.0.0.1']
 
 # Application definition
 
@@ -90,6 +90,7 @@ DATABASES = {
     }
 }
 """
+"""
 
 DATABASES = {
     'default': {
@@ -98,6 +99,17 @@ DATABASES = {
         'USER': 'postgres',
         'PASSWORD': 'Anish360',
         'HOST': 'database-1.csqshat2c1tb.ap-south-1.rds.amazonaws.com',
+        'PORT': '5432',
+    }
+}
+"""
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'xfyqyete',
+        'USER': 'xfyqyete',
+        'PASSWORD': 'LxslF5eLwQdaqTTGtktfkj8btb6FMFCi',
+        'HOST': 'ruby.db.elephantsql.com',
         'PORT': '5432',
     }
 }
@@ -155,3 +167,11 @@ STATICFILES_DIRS = [
 ]
 
 LOGIN_REDIRECT_URL = "/"
+
+# SMTP configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'GA352491@gmail.com'
+EMAIL_HOST_PASSWORD = 'Anish@360'
