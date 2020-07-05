@@ -1,16 +1,14 @@
 from django.shortcuts import render, redirect
-from .models import Invoice, Stock, Tag, Customer
-from .forms import Form1, Form2, Form3, Form4, CreateUserform
+from .models import Invoice, Stock, Customer
+from .forms import Form1, Form2, Form3, Form4, CreateUserform, Form5
 import pandas as pd
 from django.forms import inlineformset_factory
 from .filters import InvoiceFilter
-from django.db.models import Value, FloatField
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from twilio.rest import Client
-from django.db.models import Sum
+from django.db.models import Sum, F
 
 
 # Create your views here.
@@ -23,8 +21,12 @@ def home(request):
     delivered = orders.filter(status='Delivered').count()
     pending = orders.filter(status='Pending').count()
 
+    notification = Stock.objects.filter(stock_available__lte=F('quantity') * 0.37)
+    noti_count = Stock.objects.filter(stock_available__lte=F('quantity') * 0.37).count()
+
     context = {'orders': orders, 'customers': customers, 'total_customers': total_customers,
-               'total_orders': total_orders, 'delivered': delivered, 'pending': pending}
+               'total_orders': total_orders, 'delivered': delivered, 'pending': pending, 'noti_count': noti_count,
+               'notification': notification}
 
     return render(request, 'home.html', context)
 
@@ -32,7 +34,9 @@ def home(request):
 @login_required(login_url='login')
 def stock(request):
     products = Stock.objects.all()
-    df = pd.DataFrame(list(Invoice.objects.all()))
+
+    df = pd.DataFrame(list(Stock.objects.all().values()))
+    """
     # df2 = df.groupby(['customer_name_id']).agg('sum')
 
     #################################################
@@ -55,9 +59,12 @@ def stock(request):
     # s = Stock.objects.update_or_create(stock_available=num, defaults={})
 
     # print(df4)
+    
     con = [products, a]
-    com_count = df4['company name'].nunique()
-    context = {'products': products, 'a': a, 'df4': df4, 'con': con, 'com_count': com_count}
+    """
+    com_count = df['company_name'].nunique()
+
+    context = {'products': products, 'com_count': com_count}
 
     return render(request, 'stock.html', context)
 
@@ -161,6 +168,7 @@ def place_order(request, pk):
         form = Form4(request.POST)
         if form.is_valid():
             form.save()
+            form = Form4Set()
             return redirect('home')
     context = {'form': form}
     return render(request, 'place order.html', context)
@@ -295,12 +303,8 @@ def pro_list(request, pk):
     product = Stock.objects.get(id=pk)
     pro = Invoice.objects.filter(product_name_id=pk).count()
     pro1 = Invoice.objects.filter(product_name_id=pk)
-    a = Invoice.objects.filter(product_name_id=pk).aggregate(Sum('no_of_products'))
-    f = Invoice.objects.filter(product_name_id=pk).filter(bill_type='Credit').aggregate(Sum('total'))
-    b = product.quantity
-    d = dict(a)
-    e = d.get('no_of_products__sum')
-    c = b - e
-    print(f)
-    context = {'product': product, 'pro': pro, 'pro1': pro1, 'c': c}
+    d = product.stock_rem
+
+    context = {'product': product, 'pro': pro, 'pro1': pro1, 'd': d}
     return render(request, 'pro_list.html', context)
+
